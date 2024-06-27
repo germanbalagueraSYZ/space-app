@@ -4,8 +4,7 @@ import search from './search.png'
 const ContainerEstilizado = styled.div`
     position: relative;
     display: inline-block;
-`;
-
+`
 const CampoTextoEstilizado = styled.input`
     height: 56px;
     padding: 12px 16px;
@@ -27,8 +26,7 @@ const IconoLupa = styled.img`
     right: 10px;
     width: 38px !important;
     height: 38px;
-`;
-
+`
 const CampoTexto = () => {
     
     return (
