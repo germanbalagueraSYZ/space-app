@@ -8,7 +8,6 @@ const GaleriaContainer = styled.div`
 display: flex;
 gap: 24px;
 `
-
 const SeccionFluida = styled.section`
 flex-grow: 1;
 `
@@ -18,8 +17,6 @@ const ImagenesContainer = styled.section`
     flex-wrap: wrap;
     gap: 24px;
 `
-
-
 const Galeria = ({ fotos = [], alSeleccionarFoto, alAlternarFavorito, consulta }) => {
 
     return (
@@ -42,7 +39,6 @@ const Galeria = ({ fotos = [], alSeleccionarFoto, alAlternarFavorito, consulta }
                     </ImagenesContainer>
                 </SeccionFluida>
                 <Populares />
-
             </GaleriaContainer>
         </>
     )

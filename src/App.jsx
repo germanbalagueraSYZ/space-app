@@ -1,46 +1,49 @@
-import styled from 'styled-components';
-import GlobalStyles from './components/GlobalStyles'
-import Cabecera from './components/Cabecera';
-import BarraLateral from "./components/BarraLateral"
-import Banner from "./components/Banner"
-import banner from "./assets/banner.png"
-import Galeria from "./components/Galeria"
-import fotos from "./fotos.json"
-import { useState } from "react"
-import ModalZoom from "./components/ModalZoom"
-import Pie from "./components/Pie"
+import styled from "styled-components";
+import GlobalStyles from "./components/GlobalStyles";
+import Cabecera from "./components/Cabecera";
+import BarraLateral from "./components/BarraLateral";
+import Banner from "./components/Banner";
+import banner from "./assets/banner.png";
+import Galeria from "./components/Galeria";
+import ModalZoom from "./components/ModalZoom";
+import Pie from "./components/Pie";
+import Cargando from "./components/Cargando";
+import { useEffect, useState } from "react";
 
 const FondoGradiente = styled.div`
   background: linear-gradient(175deg, #041833 4.16%, #04244F 48%, #154580 96.76%);
-  width:100%;
-  min-height:100vh;
-`
+  width: 100%;
+  min-height: 100vh;
+`;
 const AppContainer = styled.div`
-  width:1280px;
-  max-width:100%;
+  width: 1280px;
+  max-width: 100%;
   margin: 0 auto;
-`
+`;
 const MainContainer = styled.main`
   display: flex;
-  gap:24px;
-`
+  gap: 24px;
+`;
 const ContenidoGaleria = styled.section`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-`
+`;
 
 const App = () => {
-  const [consulta, setConsulta] = useState({})
-  const [fotosDeGaleria, setFotosDeGaleria] = useState(fotos)
+
+  const [consulta, setConsulta] = useState('')
+  const [fotosDeGaleria, setFotosDeGaleria] = useState([])
   const [fotoSeleccionada, setFotoSeleccionada] = useState(null)
 
   const alAlternarFavorito = (foto) => {
+
     if (foto.id === fotoSeleccionada?.id) {
       setFotoSeleccionada({
         ...fotoSeleccionada,
         favorita: !fotoSeleccionada.favorita
       })
+
     }
 
     setFotosDeGaleria(fotosDeGaleria.map(fotoDeGaleria => {
@@ -50,6 +53,17 @@ const App = () => {
       }
     }))
   }
+
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await fetch('http://localhost:3000/fotos');
+      const data = await res.json();
+      setFotosDeGaleria([...data]);
+    }
+
+    setTimeout(() => getData(), 5000);
+  }, [])
 
   return (
     <>
@@ -61,11 +75,14 @@ const App = () => {
             <BarraLateral />
             <ContenidoGaleria>
               <Banner texto="La galería más completa de fotos del espacio" backgroundImage={banner} />
-              <Galeria alSeleccionarFoto={foto => setFotoSeleccionada(foto)} 
-              fotos={fotosDeGaleria} 
-              alAlternarFavorito={alAlternarFavorito} 
-              consulta={consulta}
-              />
+              {
+                fotosDeGaleria.length == 0 ?
+                  <Cargando></Cargando> :
+                  <Galeria alSeleccionarFoto={foto => setFotoSeleccionada(foto)}
+                    fotos={fotosDeGaleria}
+                    alAlternarFavorito={alAlternarFavorito}
+                    consulta={consulta} />
+              }
             </ContenidoGaleria>
           </MainContainer>
         </AppContainer>
@@ -78,4 +95,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App
