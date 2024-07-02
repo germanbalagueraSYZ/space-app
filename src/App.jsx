@@ -48,7 +48,6 @@ const App = () => {
           <ModalZoom />
           <Pie />
         </GlobalContextProvider>
-
       </FondoGradiente>
     </>
   )

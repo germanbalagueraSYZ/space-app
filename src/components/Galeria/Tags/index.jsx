@@ -12,7 +12,7 @@ const TagTitulo = styled.h3`
     color: #D9D9D9;
     font-size: 24px;
     margin: 0;
-`;
+`
 
 const Tag = styled.button`
     font-size: 24px;

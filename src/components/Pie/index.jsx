@@ -9,7 +9,7 @@ const PieEstilizado = styled.footer`
 	background-color: #04244F;
 	padding: 22px;
 	box-sizing: border-box;
-`;
+`
 
 const IconoContainer = styled.ul`
 	margin: 0;
@@ -19,13 +19,13 @@ const IconoContainer = styled.ul`
     display: inline-block;
     margin-right: 32px;
 	}
-`;
+`
 
 const PieTexto = styled.p`
 	font-size: 16px;
 	color: white;
 	margin: 0;
-`;
+`
 
 function Pie() {
 	return (

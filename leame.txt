@@ -1,0 +1,5 @@
+Para ejeutar la API ingresar a la carpeta API-Server.
+Ejecutar el comando npx json-server fotos.json
+
+y tambien ejecutar el proyecto con el comando npm run dev
+
